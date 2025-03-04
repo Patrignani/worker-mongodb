@@ -1,0 +1,31 @@
+FROM golang:alpine AS builder
+
+# Instala as ferramentas do MongoDB e o zip
+RUN apk add --no-cache mongodb-tools zip
+
+# Define o diretório de trabalho
+WORKDIR /app
+
+# Copia os arquivos do projeto
+COPY ./ /app
+
+# Compila o binário do worker
+RUN go build -ldflags="-s -w" -o worker-mongodb-backup
+
+# Cria uma imagem menor para rodar apenas o worker
+FROM alpine
+
+# Instala as ferramentas do MongoDB e o zip na imagem final
+RUN apk add --no-cache mongodb-tools zip
+
+# Define o diretório de trabalho
+WORKDIR /app
+
+# Copia o binário do worker para a nova imagem
+COPY --from=builder /app/worker-mongodb-backup /app/worker-mongodb-backup
+
+# Copia o arquivo de credenciais para dentro do contêiner
+COPY service-account.json /app/service-account.json
+
+# Define o comando padrão do contêiner
+CMD ["/app/worker-mongodb-backup"]

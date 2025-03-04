@@ -1,0 +1,6 @@
+go 1.23.3
+
+use (
+	worker-backup
+	worker-delete-old-backup
+)
