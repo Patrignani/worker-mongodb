@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"cloud.google.com/go/storage"
-	"github.com/Patrignani/worker-backup-mongodb/config"
+	"github.com/Patrignani/worker-mongodb/worker-backup/config"
 )
 
 func createMongoBackup() (string, error) {
@@ -65,7 +65,7 @@ func uploadToGCP(zipFilePath string) error {
 	}
 	defer client.Close()
 
-	bucket := client.Bucket(config.Env.GCPBucketName)
+	bucket := client.Bucket(config.Env.BucketName)
 	object := bucket.Object(filepath.Base(zipFilePath))
 	writer := object.NewWriter(ctx)
 

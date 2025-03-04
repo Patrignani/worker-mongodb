@@ -1,6 +1,6 @@
-module github.com/Patrignani/worker-backup-mongodb/worker-backup
+module github.com/Patrignani/worker-mongodb/worker-backup
 
-go 1.23.3
+go 1.24.0
 
 require (
 	cloud.google.com/go/storage v1.50.0

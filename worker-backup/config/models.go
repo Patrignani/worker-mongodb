@@ -8,5 +8,5 @@ type Environment struct {
 	MongoDB       string `env:"MONGO_DB"`
 	BackupDir     string `env:"BACKUP_DIR"`
 	ZipPassword   string `env:"ZIP_PASSWORD"`
-	GCPBucketName string `env:"GCP_BUCKET_NAME"`
+	BucketName    string `env:"BUCKET_NAME"`
 }

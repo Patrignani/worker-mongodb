@@ -12,7 +12,7 @@ services:
       MONGO_DB: "test-latency-configuration"
       BACKUP_DIR: "/backups"
       ZIP_PASSWORD: "senha123"
-      GCP_BUCKET_NAME: "backup-mongo-58ba42be"
+      BUCKET_NAME: "backup-mongo-58ba42be"
       GOOGLE_APPLICATION_CREDENTIALS: "/app/service-account.json"
     volumes:
       - ./backups:/backups
